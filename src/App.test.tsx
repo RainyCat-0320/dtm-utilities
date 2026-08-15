@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, expect, it, vi } from 'vitest'
+import { fireEvent, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from './App'
 
@@ -25,6 +25,29 @@ describe('App', () => {
       'aria-selected',
       'true',
     )
-    expect(screen.getByText('BPMタップ測定（Phase 2 で実装予定）')).toBeInTheDocument()
+    expect(screen.getByText('タップ回数: 0')).toBeInTheDocument()
+  })
+
+  it('hands the tapped BPM off to the delay/reverb tab and switches to it', () => {
+    vi.useFakeTimers()
+    try {
+      render(<App />)
+
+      fireEvent.click(screen.getByRole('tab', { name: 'BPMタップ' }))
+      const tapArea = screen.getByRole('button', { name: /クリック または スペースキー/ })
+      vi.setSystemTime(0)
+      fireEvent.click(tapArea)
+      vi.setSystemTime(500)
+      fireEvent.click(tapArea)
+      fireEvent.click(screen.getByRole('button', { name: /①/ }))
+
+      expect(screen.getByRole('tab', { name: 'ディレイ/リバーブ' })).toHaveAttribute(
+        'aria-selected',
+        'true',
+      )
+      expect(screen.getByLabelText('BPM')).toHaveValue(120)
+    } finally {
+      vi.useRealTimers()
+    }
   })
 })

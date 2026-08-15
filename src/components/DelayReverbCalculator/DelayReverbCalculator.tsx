@@ -14,8 +14,12 @@ const NOTE_VALUE_LABELS: Record<number, string> = {
   64: '1/64',
 }
 
-function DelayReverbCalculator() {
-  const [bpm, setBpm] = useState(120)
+interface DelayReverbCalculatorProps {
+  initialBpm?: number
+}
+
+function DelayReverbCalculator({ initialBpm = 120 }: DelayReverbCalculatorProps) {
+  const [bpm, setBpm] = useState(initialBpm)
   const [numerator, setNumerator] = useState(4)
   const [denominator, setDenominator] = useState(4)
   const [copiedKey, setCopiedKey] = useState<string | null>(null)

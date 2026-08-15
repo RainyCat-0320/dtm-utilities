@@ -1,4 +1,4 @@
-import { useState, type ComponentType } from 'react'
+import { useState } from 'react'
 import styles from './App.module.css'
 import DelayReverbCalculator from './components/DelayReverbCalculator/DelayReverbCalculator'
 import BpmTapMeasure from './components/BpmTapMeasure/BpmTapMeasure'
@@ -8,17 +8,22 @@ import GainStagingReference from './components/GainStagingReference/GainStagingR
 
 type TabId = 'delay-reverb' | 'bpm-tap' | 'freq-note' | 'lufs-plr' | 'gain-staging'
 
-const tabs: { id: TabId; label: string; Panel: ComponentType }[] = [
-  { id: 'delay-reverb', label: 'ディレイ/リバーブ', Panel: DelayReverbCalculator },
-  { id: 'bpm-tap', label: 'BPMタップ', Panel: BpmTapMeasure },
-  { id: 'freq-note', label: '周波数⇔ノート', Panel: FrequencyNoteConverter },
-  { id: 'lufs-plr', label: 'LUFS/PLR', Panel: LufsPlrReference },
-  { id: 'gain-staging', label: 'ゲインステージング', Panel: GainStagingReference },
+const tabs: { id: TabId; label: string }[] = [
+  { id: 'delay-reverb', label: 'ディレイ/リバーブ' },
+  { id: 'bpm-tap', label: 'BPMタップ' },
+  { id: 'freq-note', label: '周波数⇔ノート' },
+  { id: 'lufs-plr', label: 'LUFS/PLR' },
+  { id: 'gain-staging', label: 'ゲインステージング' },
 ]
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabId>(tabs[0].id)
-  const ActivePanel = tabs.find((tab) => tab.id === activeTab)?.Panel ?? tabs[0].Panel
+  const [bpmHandoff, setBpmHandoff] = useState<number | undefined>(undefined)
+
+  function handleTransferBpm(bpm: number) {
+    setBpmHandoff(bpm)
+    setActiveTab('delay-reverb')
+  }
 
   return (
     <div className={styles.app}>
@@ -40,7 +45,13 @@ function App() {
         ))}
       </nav>
       <main className={styles.panel} role="tabpanel">
-        <ActivePanel />
+        {activeTab === 'delay-reverb' && (
+          <DelayReverbCalculator initialBpm={bpmHandoff} />
+        )}
+        {activeTab === 'bpm-tap' && <BpmTapMeasure onTransferBpm={handleTransferBpm} />}
+        {activeTab === 'freq-note' && <FrequencyNoteConverter />}
+        {activeTab === 'lufs-plr' && <LufsPlrReference />}
+        {activeTab === 'gain-staging' && <GainStagingReference />}
       </main>
     </div>
   )
