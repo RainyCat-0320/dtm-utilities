@@ -8,6 +8,15 @@
   --color-text: #e6e8eb;
   --color-text-muted: #9aa0ab;
   --color-accent: #5eead4;
+  --color-error: #f87171;
+  --color-warning: #fbbf24;
+
+  --color-piano-white-key: #f4f4f5;
+  --color-piano-white-key-text: #333333;
+  --color-piano-black-key: #1a1a1a;
+  --color-piano-black-key-border: #000000;
+  --color-piano-black-key-text: #dddddd;
+  --color-piano-selected-text: #0a0a0a;
 
   font-family:
     system-ui,
@@ -42,4 +51,9 @@ body {
 
 button {
   font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }

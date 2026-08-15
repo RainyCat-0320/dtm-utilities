@@ -40,7 +40,7 @@
 }
 
 .error {
-  color: #f87171;
+  color: var(--color-error);
   margin: 0;
 }
 

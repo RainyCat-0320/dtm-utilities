@@ -76,7 +76,7 @@
 }
 
 .error {
-  color: #f87171;
+  color: var(--color-error);
   margin: 0;
   font-size: 0.875rem;
 }
@@ -116,5 +116,5 @@
 
 .comment.low,
 .comment.high {
-  color: #fbbf24;
+  color: var(--color-warning);
 }
