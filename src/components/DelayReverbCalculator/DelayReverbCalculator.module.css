@@ -1,4 +1,105 @@
-.placeholder {
-  color: var(--color-text-muted);
+.container {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.field input,
+.field select {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.375rem;
+  color: var(--color-text);
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.field input {
+  width: 6rem;
+}
+
+.timeSignature {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.error {
+  color: #f87171;
+  margin: 0;
+}
+
+.heading {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 32rem;
+  font-size: 0.875rem;
+}
+
+.table th,
+.table td {
+  border: 1px solid var(--color-border);
+  padding: 0.375rem 0.625rem;
+  text-align: right;
+}
+
+.table thead th {
+  background-color: var(--color-surface);
+  text-align: center;
+}
+
+.table tbody th {
+  text-align: left;
+  background-color: var(--color-surface);
+}
+
+.copyCell {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+
+.copyCell:hover {
+  color: var(--color-accent);
+}
+
+.copiedBadge {
+  position: absolute;
+  top: -1.5rem;
+  right: 0;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
 }
