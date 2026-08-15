@@ -1,4 +1,67 @@
-.placeholder {
-  color: var(--color-text-muted);
+.container {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.placeholderNote {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  max-width: 16rem;
+}
+
+.field input {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.375rem;
+  color: var(--color-text);
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 24rem;
+  font-size: 0.875rem;
+}
+
+.table th,
+.table td {
+  border: 1px solid var(--color-border);
+  padding: 0.375rem 0.625rem;
+  text-align: right;
+}
+
+.table thead th {
+  background-color: var(--color-surface);
+  text-align: center;
+}
+
+.table tbody th {
+  text-align: left;
+  background-color: var(--color-surface);
+}
+
+.table tbody td:last-child {
+  text-align: left;
+}
+
+.empty {
+  margin: 0.75rem 0 0;
+  color: var(--color-text-muted);
 }
